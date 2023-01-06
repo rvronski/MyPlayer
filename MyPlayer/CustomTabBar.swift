@@ -21,7 +21,7 @@ class CustomTabBarViewController: UITabBarController, UITabBarControllerDelegate
         let image = UIImage.SymbolConfiguration(pointSize: 15, weight: .heavy, scale: .large)
         button.setImage(UIImage(systemName: "plus", withConfiguration: image), for: .normal)
         button.imageView?.tintColor = .white
-        button.backgroundColor = #colorLiteral(red: 0.8933888078, green: 0.4429260492, blue: 0.6345424056, alpha: 1)
+        button.backgroundColor = .systemOrange
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
         
@@ -73,7 +73,7 @@ class CustomTabBarViewController: UITabBarController, UITabBarControllerDelegate
         layer.shadowOpacity = 1
         
         self.tabBar.layer.insertSublayer(layer, at: 0)
-        self.tabBar.tintColor = #colorLiteral(red: 0.8933888078, green: 0.4429260492, blue: 0.6345424056, alpha: 1)
+        self.tabBar.tintColor = .orange
         self.tabBar.itemWidth = width/6
         self.tabBar.itemPositioning = .centered
         self.tabBar.unselectedItemTintColor = .white
@@ -121,7 +121,7 @@ class CustomTabBarViewController: UITabBarController, UITabBarControllerDelegate
         } else {
             UIView.animate(withDuration: 0.15) { [weak self] in
                 self?.middleButton.transform = CGAffineTransform(rotationAngle: 0)
-                self?.middleButton.backgroundColor = #colorLiteral(red: 0.8933888078, green: 0.4429260492, blue: 0.6345424056, alpha: 1)
+                self?.middleButton.backgroundColor = .systemOrange
                 self?.middleButton.layer.borderWidth = 0
                 self?.middleButton.imageView?.tintColor = .white
                 self?.buttonIsTapped = false

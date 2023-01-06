@@ -39,6 +39,11 @@ class ViewController: UIViewController {
     
     private lazy var musicSlider: UISlider = {
         let slider = UISlider()
+        slider.minimumTrackTintColor = .orange
+        let image = UIImage.SymbolConfiguration(pointSize: 1, weight: .heavy, scale: .large)
+        slider.setThumbImage(UIImage(systemName: "circle.dotted",withConfiguration: image), for: .normal)
+        slider.thumbTintColor = .clear
+//        slider.thumbImage(for: .selected)
         slider.minimumValue = 0
         slider.translatesAutoresizingMaskIntoConstraints = false
 //        slider.addTarget(self, action: #selector(touchSlider), for: .valueChanged)
@@ -50,8 +55,8 @@ class ViewController: UIViewController {
         playButton.clipsToBounds = true
         let image = UIImage.SymbolConfiguration(pointSize: 25, weight: .heavy, scale: .large)
         playButton.setImage(UIImage(systemName: "play.fill", withConfiguration: image), for: .normal)
-       
         playButton.clipsToBounds = true
+        playButton.tintColor = #colorLiteral(red: 0.2936886549, green: 0.4803959727, blue: 0.4528408051, alpha: 0.8600324416)
         playButton.translatesAutoresizingMaskIntoConstraints = false
 //        playButton.addTarget(self, action: #selector(play), for: .touchUpInside)
         return playButton
@@ -103,7 +108,7 @@ class ViewController: UIViewController {
 //        self.backgroundView.addSubview(self.songNameLabel)
 //        self.backgroundView.addSubview(self.songTimeLabel)
 //        self.backgroundView.addSubview(self.albumImageView)
-//        self.backgroundView.addSubview(self.musicSlider)
+        self.backgroundView.addSubview(self.musicSlider)
 //        self.backgroundView.addSubview(self.stopButton)
 //        self.backgroundView.addSubview(self.pauseButton)
 //        self.backgroundView.addSubview(self.nextButton)
@@ -122,7 +127,10 @@ class ViewController: UIViewController {
             self.playButton.heightAnchor.constraint(equalToConstant: 50),
             self.playButton.widthAnchor.constraint(equalToConstant: 50),
             
-        
+            self.musicSlider.bottomAnchor.constraint(equalTo: self.backgroundView.bottomAnchor, constant: -10),
+            self.musicSlider.centerXAnchor.constraint(equalTo: self.backgroundView.centerXAnchor),
+            self.musicSlider.leftAnchor.constraint(equalTo: self.backgroundView.leftAnchor, constant: 10),
+            self.musicSlider.rightAnchor.constraint(equalTo: self.backgroundView.rightAnchor, constant: -10),
         ])
     }
 }
