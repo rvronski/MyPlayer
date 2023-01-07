@@ -20,6 +20,7 @@
 		45A6860B296873D40052FCD5 /* Chet Faker  - No Diggity Live Sessions.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45A68606296873CE0052FCD5 /* Chet Faker  - No Diggity Live Sessions.mp3 */; };
 		45A6860C296873D40052FCD5 /* Queen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45A68607296873CF0052FCD5 /* Queen.mp3 */; };
 		45A6860D296873D40052FCD5 /* Just The Two Of Us.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45A68608296873D20052FCD5 /* Just The Two Of Us.mp3 */; };
+		45A6860F2968E3700052FCD5 /* MusicNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A6860E2968E3700052FCD5 /* MusicNetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		45A68606296873CE0052FCD5 /* Chet Faker  - No Diggity Live Sessions.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chet Faker  - No Diggity Live Sessions.mp3"; sourceTree = "<group>"; };
 		45A68607296873CF0052FCD5 /* Queen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Queen.mp3; sourceTree = "<group>"; };
 		45A68608296873D20052FCD5 /* Just The Two Of Us.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Just The Two Of Us.mp3"; sourceTree = "<group>"; };
+		45A6860E2968E3700052FCD5 /* MusicNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicNetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				45A685E9296788BD0052FCD5 /* AppDelegate.swift */,
 				45A685EB296788BD0052FCD5 /* SceneDelegate.swift */,
 				45A685ED296788BD0052FCD5 /* ViewController.swift */,
+				45A6860E2968E3700052FCD5 /* MusicNetworkManager.swift */,
 				45A685FD296789B10052FCD5 /* CustomTabBar.swift */,
 				45A685FF296789D40052FCD5 /* SecondViewController.swift */,
 				45A68601296789E40052FCD5 /* ThirdViewController.swift */,
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45A6860F2968E3700052FCD5 /* MusicNetworkManager.swift in Sources */,
 				45A685FE296789B10052FCD5 /* CustomTabBar.swift in Sources */,
 				45A685EE296788BD0052FCD5 /* ViewController.swift in Sources */,
 				45A685EA296788BD0052FCD5 /* AppDelegate.swift in Sources */,

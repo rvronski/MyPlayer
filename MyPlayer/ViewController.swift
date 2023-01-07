@@ -118,6 +118,12 @@ class ViewController: UIViewController {
         setupView()
         music()
         musicSlider.value = 0.0
+        MusicNetworkManager.loadMusic { track in
+            DispatchQueue.main.async {
+                print(track)
+            }
+        }
+        
     }
 
     private func setupView() {
