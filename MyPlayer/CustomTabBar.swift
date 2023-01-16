@@ -132,7 +132,7 @@ class CustomTabBarViewController: UITabBarController, UITabBarControllerDelegate
     
     private func createButton(size: CGFloat) -> UIButton {
         let button = UIButton(type: .custom)
-        button.backgroundColor = #colorLiteral(red: 0.8933888078, green: 0.4429260492, blue: 0.6345424056, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.2936886549, green: 0.4803959727, blue: 0.4528408051, alpha: 0.8600324416)
         button.translatesAutoresizingMaskIntoConstraints = false
 //        button.bottomAnchor.constraint(equalTo: self.middleButton.topAnchor, constant: 16).isActive = true
         button.widthAnchor.constraint(equalToConstant: size).isActive = true
@@ -217,13 +217,14 @@ class CustomTabBarViewController: UITabBarController, UITabBarControllerDelegate
 
 
         @objc func optionHandler(sender: UIButton) {
-            
+//            let songsVC = SongsViewController()
+//            present(songsVC, animated: true)
+           
             switch index {
-                
+
             case 0: print("Button 1 was pressed.")
             case 1: print("Button 2 was pressed.")
-            default: print("Button 3 was pressed.")
-                
+            default: print("Button was pressed")
             }
         }
     
