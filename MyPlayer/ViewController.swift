@@ -16,42 +16,39 @@ class ViewController: UIViewController {
         let array = (try? FileManager.default.contentsOfDirectory(atPath: path.path())) ?? []
         return array
     }
-     var showingBackView = false
+    var showingBackView = false
     
     let color = #colorLiteral(red: 0.9296384454, green: 0.9451069236, blue: 0.9368827939, alpha: 1)
     
     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
     private lazy var containerButtonView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = color
         view.layer.cornerRadius = 15
         view.isUserInteractionEnabled = true
-        
         return view
     }()
     
     private lazy var containerView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = color
         view.layer.cornerRadius = 15
         view.isUserInteractionEnabled = true
-        
         return view
     }()
     private lazy var tableViewBackgroundView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = color
         view.layer.cornerRadius = 15
         view.isUserInteractionEnabled = true
-//        view.isHidden = true
         return view
     }()
     private lazy var backgroundView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = color
         view.layer.cornerRadius = 15
@@ -73,10 +70,10 @@ class ViewController: UIViewController {
     
     private lazy var buttonBackgroundView: UIView = {
         let view = UIView()
-         view.translatesAutoresizingMaskIntoConstraints = false
-         view.backgroundColor = #colorLiteral(red: 0.7342417836, green: 0.7921757102, blue: 0.7716051936, alpha: 1)
-         view.layer.cornerRadius = 15
-         return view
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = #colorLiteral(red: 0.7342417836, green: 0.7921757102, blue: 0.7716051936, alpha: 1)
+        view.layer.cornerRadius = 15
+        return view
     }()
     private lazy var songNameLabel: UILabel = {
         let songNameLabel = UILabel()
@@ -103,8 +100,8 @@ class ViewController: UIViewController {
         slider.minimumTrackTintColor = .orange
         let image = UIImage.SymbolConfiguration(pointSize: 2, weight: .ultraLight, scale: .small )
         slider.setThumbImage(UIImage(systemName: "circle.dotted",withConfiguration: image), for: .normal)
-       
-//        slider.thumbTintColor = .black
+        
+        //        slider.thumbTintColor = .black
         slider.minimumValue = 0.0
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.addTarget(self, action: #selector(touchSlider), for: .valueChanged)
@@ -127,7 +124,7 @@ class ViewController: UIViewController {
         let stopButton = UIButton()
         stopButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
         stopButton.translatesAutoresizingMaskIntoConstraints = false
-//        stopButton.addTarget(self, action: #selector(stop), for: .touchUpInside)
+        //        stopButton.addTarget(self, action: #selector(stop), for: .touchUpInside)
         return stopButton
     }()
     
@@ -180,22 +177,18 @@ class ViewController: UIViewController {
                         self?.track = trackUrl
                         self?.music()
                     }
-
+                    
                 }
             }
-
-
-            }
+        }
         print(tracks)
         print(path)
         
     }
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        self.containerView.bottomAnchor.constraint(equalTo: self.containerButtonView.topAnchor, constant: 20).isActive = true
-//    }
-    var botomConstraint: NSLayoutConstraint?
+    
+    var botomContainerConstraint: NSLayoutConstraint?
+    var botomSliderConstraint: NSLayoutConstraint?
     var url = ""
     private func setupView() {
         self.view.backgroundColor = .white
@@ -211,25 +204,26 @@ class ViewController: UIViewController {
         self.buttonBackgroundView.addSubview(self.backButton)
         self.buttonBackgroundView.addSubview(self.playButton)
         self.view.bringSubviewToFront(backgroundView)
-        botomConstraint = self.containerView.bottomAnchor.constraint(equalTo: self.containerButtonView.topAnchor, constant: 20)
-        botomConstraint?.isActive = true
+        botomContainerConstraint = self.containerView.bottomAnchor.constraint(equalTo: self.containerButtonView.topAnchor, constant: 20)
+        botomSliderConstraint =  self.musicSlider.bottomAnchor.constraint(equalTo: self.buttonBackgroundView.bottomAnchor, constant: -20)
+        botomContainerConstraint?.isActive = true
+        botomSliderConstraint?.isActive = true
+        //        self.backgroundView.addSubview(self.songNameLabel)
+        //        self.backgroundView.addSubview(self.songTimeLabel)
+        //        self.backgroundView.addSubview(self.albumImageView)
+        //        self.backgroundView.addSubview(self.stopButton)
         
-//        self.backgroundView.addSubview(self.songNameLabel)
-//        self.backgroundView.addSubview(self.songTimeLabel)
-//        self.backgroundView.addSubview(self.albumImageView)
-//        self.backgroundView.addSubview(self.stopButton)
         
-       
         NSLayoutConstraint.activate([
             
-           
+            
             self.containerButtonView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -30 ),
             self.containerButtonView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
             self.containerButtonView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
-            self.containerButtonView.heightAnchor.constraint(equalToConstant: 85),
+            self.containerButtonView.heightAnchor.constraint(equalToConstant: 90),
             
             self.containerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
-//            self.containerView.bottomAnchor.constraint(equalTo: self.containerButtonView.topAnchor, constant: 20),
+            //            self.containerView.bottomAnchor.constraint(equalTo: self.containerButtonView.topAnchor, constant: 20),
             self.containerView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
             self.containerView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
             
@@ -250,7 +244,7 @@ class ViewController: UIViewController {
             self.playButton.heightAnchor.constraint(equalToConstant: 50),
             self.playButton.widthAnchor.constraint(equalToConstant: 50),
             
-            self.musicSlider.bottomAnchor.constraint(equalTo: self.buttonBackgroundView.bottomAnchor, constant: -20),
+            
             self.musicSlider.leftAnchor.constraint(equalTo: self.buttonBackgroundView.leftAnchor, constant: 10),
             self.musicSlider.rightAnchor.constraint(equalTo: self.buttonBackgroundView.rightAnchor, constant: -10),
             
@@ -287,11 +281,11 @@ class ViewController: UIViewController {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(flip))
         gesture.numberOfTapsRequired = 1
         self.backgroundView.addGestureRecognizer(gesture)
-//        self.tableViewBackgroundView.addGestureRecognizer(gesture)
+        
     }
     
     @objc private func flip() {
-//        self.view.layoutIfNeeded()
+        //        self.view.layoutIfNeeded()
         let delay = showingBackView ? 1 : 0
         let viewCentr = self.buttonBackgroundView.frame.origin.y
         let buttonsBoundsY = self.buttonBackgroundView.bounds.origin.y
@@ -306,44 +300,32 @@ class ViewController: UIViewController {
                 self.nextButton.transform = self.showingBackView ? .identity : CGAffineTransform(scaleX: 1, y: 2)
                 self.backButton.transform = self.showingBackView ? .identity : CGAffineTransform(scaleX: 1, y: 2)
                 self.pauseButton.transform = self.showingBackView ? .identity : CGAffineTransform(scaleX: 1, y: 2)
+                self.musicSlider.transform = self.showingBackView ? .identity : CGAffineTransform(scaleX: 1, y: 2)
                 self.buttonBackgroundView.transform = self.showingBackView ? .identity : CGAffineTransform(scaleX: 1, y: 0.5)
                 self.buttonBackgroundView.backgroundColor = self.showingBackView ?  #colorLiteral(red: 0.7342417836, green: 0.7921757102, blue: 0.7716051936, alpha: 1) : .clear
-                self.botomConstraint?.constant = self.showingBackView ? 20 : -10
-//                self.containerView.bottomAnchor.constraint(equalTo: self.containerButtonView.topAnchor, constant: 20).isActive = self.showingBackView ? true : false
+                self.botomSliderConstraint?.constant = self.showingBackView ? -20 : 0
+                self.botomContainerConstraint?.constant = self.showingBackView ? 20 : -10
+                
                 self.buttonBackgroundView.center = self.showingBackView ? CGPoint(x: self.containerButtonView.bounds.midX, y: viewCentr) : CGPoint(x: self.containerButtonView.bounds.midX, y: self.containerButtonView.bounds.maxY - 45)
-//                self.buttonBackgroundView.layer.cornerRadius = self.showingBackView ? 15 :
                 self.view.layoutIfNeeded()
             }
         }
-            UIView.transition(from: fromView, to: toView, duration: 1, options: [.transitionFlipFromRight, .showHideTransitionViews] ) {_ in
-            //            toView.translatesAutoresizingMaskIntoConstraints = false
+        UIView.transition(from: fromView, to: toView, duration: 1, options: [.transitionFlipFromRight, .showHideTransitionViews] ) {_ in
+            
             self.showingBackView.toggle()
-                self.view.layoutIfNeeded()
+            self.view.layoutIfNeeded()
         }
-//        UIView.transition(from: fromView, to: toView, duration: 1, options: [.transitionFlipFromRight, .showHideTransitionViews] ) {_ in
-//            toView.translatesAutoresizingMaskIntoConstraints = false
-//            self.showingBackView.toggle()
-        }
-
-
+    }
     
     
-//    @objc private func flip() {
-//            if UserDefaults.standard.bool(forKey: "isBackView") == false{
-//                tableViewBackgroundView.showFlip()
-//                backgroundView.hideFlip()
-//                UserDefaults.standard.set(true, forKey: "isBackView")
-//            }else if UserDefaults.standard.bool(forKey: "isBackView") == true {
-//                tableViewBackgroundView.hideFlip()
-//                backgroundView.showFlip()
-//                UserDefaults.standard.set(false, forKey: "isBackView")
-//            }
-//    }
+    
+    
+    
     var track: URL?
     private func music() {
-//        let trackName = "myTrack"
-//        let urlTrack = path.appending(path: trackName)
-//        URL.init(fileURLWithPath: Bundle.main.path(forResource: "\(songs[counter])", ofType: "mp3")!
+        //        let trackName = "myTrack"
+        //        let urlTrack = path.appending(path: trackName)
+        //        URL.init(fileURLWithPath: Bundle.main.path(forResource: "\(songs[counter])", ofType: "mp3")!
         
         print("🍓\(counter)")
         let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path() + tracks[counter]
@@ -351,12 +333,12 @@ class ViewController: UIViewController {
         guard let trackURL = URL(string: url) else {return}
         do {
             player = try AVAudioPlayer(contentsOf: trackURL, fileTypeHint: "mp3")
-                player.prepareToPlay()
+            player.prepareToPlay()
         }
         catch {
             print(error)
         }
-//        self.albumImageView.image = albums.randomElement()!!
+        //        self.albumImageView.image = albums.randomElement()!!
     }
     
     @objc func nextSong() {
@@ -379,7 +361,7 @@ class ViewController: UIViewController {
             play()
             player.currentTime = 0
         } else {
-//            stop()
+            //            stop()
             play()
             return
         }
@@ -442,55 +424,40 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension UIView{
-    
-    func showFlip(){
-            if UserDefaults.standard.bool(forKey: "isBackView"){
-                UIView.transition(with: self, duration: 0.5, options: [.transitionFlipFromRight,.allowUserInteraction], animations: nil, completion: nil)
-                self.isHidden = false
-            }
 
-        }
-    func hideFlip(){
-        if !UserDefaults.standard.bool(forKey: "isBackView"){
-            UIView.transition(with: self, duration: 0.5, options: [.transitionFlipFromLeft,.allowUserInteraction], animations: nil,  completion: nil)
-            self.isHidden = true
-        }
-    }
-}
 /*
  class MyViewController: UIViewController {
-
-         @IBOutlet weak var containerView: UIView!
-
-         private let backImageView: UIImageView! = UIImageView(image: UIImage(named: "back"))
-         private let frontImageView: UIImageView! = UIImageView(image: UIImage(named: "front"))
-
-         private var showingBack = false
-
-         override func viewDidLoad() {
-             super.viewDidLoad()
-
-             frontImageView.contentMode = .ScaleAspectFit
-             backImageView.contentMode = .ScaleAspectFit
-
-             containerView.addSubview(frontImageView)
-             frontImageView.translatesAutoresizingMaskIntoConstraints = false
-             frontImageView.spanSuperview()
-
-             let singleTap = UITapGestureRecognizer(target: self, action: #selector(flip))
-             singleTap.numberOfTapsRequired = 1
-             containerView.addGestureRecognizer(singleTap)
-         }
-
-         func flip() {
-             let toView = showingBack ? frontImageView : backImageView
-             let fromView = showingBack ? backImageView : frontImageView
-             UIView.transitionFromView(fromView, toView: toView, duration: 1, options: .TransitionFlipFromRight, completion: nil)
-             toView.translatesAutoresizingMaskIntoConstraints = false
-             toView.spanSuperview()
-             showingBack = !showingBack
-         }
-
-     }
+ 
+ @IBOutlet weak var containerView: UIView!
+ 
+ private let backImageView: UIImageView! = UIImageView(image: UIImage(named: "back"))
+ private let frontImageView: UIImageView! = UIImageView(image: UIImage(named: "front"))
+ 
+ private var showingBack = false
+ 
+ override func viewDidLoad() {
+ super.viewDidLoad()
+ 
+ frontImageView.contentMode = .ScaleAspectFit
+ backImageView.contentMode = .ScaleAspectFit
+ 
+ containerView.addSubview(frontImageView)
+ frontImageView.translatesAutoresizingMaskIntoConstraints = false
+ frontImageView.spanSuperview()
+ 
+ let singleTap = UITapGestureRecognizer(target: self, action: #selector(flip))
+ singleTap.numberOfTapsRequired = 1
+ containerView.addGestureRecognizer(singleTap)
+ }
+ 
+ func flip() {
+ let toView = showingBack ? frontImageView : backImageView
+ let fromView = showingBack ? backImageView : frontImageView
+ UIView.transitionFromView(fromView, toView: toView, duration: 1, options: .TransitionFlipFromRight, completion: nil)
+ toView.translatesAutoresizingMaskIntoConstraints = false
+ toView.spanSuperview()
+ showingBack = !showingBack
+ }
+ 
+ }
  */
