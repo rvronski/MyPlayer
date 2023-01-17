@@ -8,7 +8,11 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
     let download = DownloadManager.shared
     var counter = 0
     let songs = ["Queen","Just The Two Of Us","09 We Like Songs","Chet Faker  - No Diggity Live Sessions","All I Do (Todd Terje Edit)"]
@@ -21,6 +25,8 @@ class ViewController: UIViewController {
     let color = #colorLiteral(red: 0.9296384454, green: 0.9451069236, blue: 0.9368827939, alpha: 1)
     
     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    
+    private lazy var seachControler = UISearchController(searchResultsController: nil)
     
     private lazy var containerButtonView: UIView = {
         let view = UIView()
@@ -156,6 +162,14 @@ class ViewController: UIViewController {
         return backButton
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.searchController = seachControler
+        self.navigationItem.searchController?.searchBar.isHidden = showingBackView ? true : false
+    }
+       
+    
+    
     var player = AVAudioPlayer()
     var timer = Timer()
     override func viewDidLoad() {
@@ -163,24 +177,26 @@ class ViewController: UIViewController {
         self.setupView()
         self.gestureView()
         musicSlider.value = 0.0
+        seachControler.searchResultsUpdater = self
         
-        MusicNetworkManager.shared.loadMusic {[weak self] music in
-            let group = DispatchGroup()
-            group.enter()
-            DispatchQueue.global().async {
-                self?.url = music ?? ""
-                group.leave()
-            }
-            group.notify(queue: .main)  {
-                self?.download.download(url: self!.url) { trackUrl in
-                    DispatchQueue.main.async {
-                        self?.track = trackUrl
-                        self?.music()
-                    }
-                    
-                }
-            }
-        }
+//        MusicNetworkManager.shared.loadMusic {[weak self] music in
+//            let group = DispatchGroup()
+//            group.enter()
+//            DispatchQueue.global().async {
+//                self?.url = music ?? ""
+//                group.leave()
+//            }
+//            group.notify(queue: .main)  {
+//                self?.download.download(url: self!.url) { trackUrl in
+//                    DispatchQueue.main.async {
+//                        self?.track = trackUrl
+//                        self?.music()
+//                    }
+//
+//                }
+//            }
+//        }
+        music()
         print(tracks)
         print(path)
         
@@ -288,10 +304,6 @@ class ViewController: UIViewController {
         //        self.view.layoutIfNeeded()
         let delay = showingBackView ? 1 : 0
         let viewCentr = self.buttonBackgroundView.frame.origin.y
-        let buttonsBoundsY = self.buttonBackgroundView.bounds.origin.y
-        let buttonsBoundsX = self.buttonBackgroundView.bounds.origin.x
-        let buttonsHieght = self.buttonBackgroundView.frame.height / 2
-        let down = buttonsBoundsX + buttonsHieght
         let toView = showingBackView ? self.backgroundView : self.tableViewBackgroundView
         let fromView = showingBackView ?  self.tableViewBackgroundView : self.backgroundView
         UIView.animateKeyframes(withDuration: 0.3, delay: TimeInterval(delay), options: .calculationModeCubic) {
@@ -326,13 +338,13 @@ class ViewController: UIViewController {
         //        let trackName = "myTrack"
         //        let urlTrack = path.appending(path: trackName)
         //        URL.init(fileURLWithPath: Bundle.main.path(forResource: "\(songs[counter])", ofType: "mp3")!
-        
+//        try AVAudioPlayer(contentsOf: trackURL, fileTypeHint: "mp3")
         print("🍓\(counter)")
-        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path() + tracks[counter]
-        print(url)
-        guard let trackURL = URL(string: url) else {return}
+//        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path() + tracks[counter]
+//        print(url)
+//        guard let trackURL = URL(string: url) else {return}
         do {
-            player = try AVAudioPlayer(contentsOf: trackURL, fileTypeHint: "mp3")
+            player =  try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "\(songs[counter])", ofType: "mp3")!))
             player.prepareToPlay()
         }
         catch {
@@ -342,7 +354,7 @@ class ViewController: UIViewController {
     }
     
     @objc func nextSong() {
-        if (self.counter + 1) == tracks.count {
+        if (self.counter + 1) == songs.count {
             self.counter = -1
         }
         self.counter += 1
@@ -409,12 +421,13 @@ class ViewController: UIViewController {
 }
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.tracks.count
+//        self.tracks.count
+        return self.songs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "songsCell", for: indexPath) as! SongsTableViewCell
-        cell.setup(text: tracks[indexPath.row])
+        cell.setup(text: songs[indexPath.row])
         
         return cell
     }

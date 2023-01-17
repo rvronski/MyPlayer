@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45063D9E29738FE200816BA9 /* MyPlayer Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 45063D9D29738FE200816BA9 /* MyPlayer Icon.png */; };
 		450C61B52970EC240032F762 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450C61B42970EC240032F762 /* DownloadManager.swift */; };
 		45A685EA296788BD0052FCD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A685E9296788BD0052FCD5 /* AppDelegate.swift */; };
 		45A685EC296788BD0052FCD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A685EB296788BD0052FCD5 /* SceneDelegate.swift */; };
@@ -27,7 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		45063D9D29738FE200816BA9 /* MyPlayer Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyPlayer Icon.png"; sourceTree = "<group>"; };
 		450C61B42970EC240032F762 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		45A685E6296788BD0052FCD5 /* MyPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45A685E9296788BD0052FCD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 				45A685F2296788C00052FCD5 /* Assets.xcassets */,
 				45A685F4296788C00052FCD5 /* LaunchScreen.storyboard */,
 				45A685F7296788C00052FCD5 /* Info.plist */,
-				45063D9D29738FE200816BA9 /* MyPlayer Icon.png */,
 			);
 			path = MyPlayer;
 			sourceTree = "<group>";
@@ -169,7 +166,6 @@
 				45A685F6296788C00052FCD5 /* LaunchScreen.storyboard in Resources */,
 				45A685F3296788C00052FCD5 /* Assets.xcassets in Resources */,
 				45A6860D296873D40052FCD5 /* Just The Two Of Us.mp3 in Resources */,
-				45063D9E29738FE200816BA9 /* MyPlayer Icon.png in Resources */,
 				45A6860B296873D40052FCD5 /* Chet Faker  - No Diggity Live Sessions.mp3 in Resources */,
 				45A6860C296873D40052FCD5 /* Queen.mp3 in Resources */,
 				45A6860A296873D40052FCD5 /* 09 We Like Songs.mp3 in Resources */,

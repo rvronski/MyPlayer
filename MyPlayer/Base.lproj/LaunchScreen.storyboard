@@ -49,7 +49,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MyPlayer Icon.png" width="800" height="800"/>
+        <image name="MyPlayer Icon.png" width="128" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
