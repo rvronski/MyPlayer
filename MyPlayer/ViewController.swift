@@ -66,7 +66,7 @@ class ViewController: UIViewController, UISearchResultsUpdating {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 50
+        tableView.estimatedRowHeight = 70
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SongsTableViewCell.self, forCellReuseIdentifier: "songsCell")
@@ -335,6 +335,7 @@ class ViewController: UIViewController, UISearchResultsUpdating {
     
     var track: URL?
     private func music() {
+        
         //        let trackName = "myTrack"
         //        let urlTrack = path.appending(path: trackName)
         //        URL.init(fileURLWithPath: Bundle.main.path(forResource: "\(songs[counter])", ofType: "mp3")!
@@ -361,7 +362,7 @@ class ViewController: UIViewController, UISearchResultsUpdating {
         music()
         play()
         player.currentTime = 0
-        
+        self.songsTableView.reloadData()
     }
     
     
@@ -372,6 +373,7 @@ class ViewController: UIViewController, UISearchResultsUpdating {
             music()
             play()
             player.currentTime = 0
+            self.songsTableView.reloadData()
         } else {
             //            stop()
             play()
@@ -383,26 +385,28 @@ class ViewController: UIViewController, UISearchResultsUpdating {
         player.pause()
         self.playButton.isHidden.toggle()
         self.pauseButton.isHidden.toggle()
+        self.songsTableView.reloadData()
     }
     
     @objc func play() {
-        music()
         musicSlider.maximumValue = Float(player.duration)
         songNameLabel.text = songs[counter]
         if player.isPlaying {
             self.playButton.isHidden = true
             self.pauseButton.isHidden = false
+            self.songsTableView.reloadData()
         } else {
             player.play()
             self.playButton.isHidden = true
             self.pauseButton.isHidden = false
             timer = Timer.scheduledTimer(
-                withTimeInterval: 0.05,
+                withTimeInterval: 0.01,
                 repeats: true
             ) { [weak self] timer in
                 self?.updateMusicSlider()
             }
             timer.fire()
+            self.songsTableView.reloadData()
         }
     }
     
@@ -427,12 +431,37 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "songsCell", for: indexPath) as! SongsTableViewCell
-        cell.setup(text: songs[indexPath.row])
-        
+        cell.setup(text: songs[indexPath.row], index: indexPath.row, counter: counter)
+    
+            if indexPath.row == counter  {
+                cell.timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { timer in
+                    if self.player.isPlaying {
+                        cell.waveAnimation()
+                    } else {
+                        timer.invalidate()
+                        cell.heightConstaint1?.constant = 0
+                        cell.heightConstaint2?.constant = 0
+                        cell.heightConstaint3?.constant = 0
+                        cell.heightConstaint4?.constant = 0
+                    }
+                }
+//                cell.timer.fire()
+            } else if indexPath.row != counter {
+                cell.timer.invalidate()
+                cell.heightConstaint1?.constant = 0
+                cell.heightConstaint2?.constant = 0
+                cell.heightConstaint3?.constant = 0
+                cell.heightConstaint4?.constant = 0
+            }
+       
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.counter = indexPath.row
+        self.songsTableView.reloadData()
+        music()
+        play()
         flip()
     }
 }

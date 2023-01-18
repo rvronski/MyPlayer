@@ -16,30 +16,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyPlayer Icon.png" highlightedImage="square.and.arrow.up" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WMA-YF-Dgs">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyPlayerIcon" highlightedImage="square.and.arrow.up" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WMA-YF-Dgs">
                                 <rect key="frame" x="132.66666666666666" y="374.66666666666669" width="127.99999999999997" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="TkU-Ff-5kC"/>
-                                    <constraint firstAttribute="width" constant="127.99999999999997" id="Wbh-n1-TXA"/>
-                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyPlayer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6q-fM-NFc">
-                                <rect key="frame" x="160.66666666666666" y="782.66666666666663" width="72" height="20.333333333333371"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyPlayer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6q-fM-NFc">
+                                <rect key="frame" x="144.66666666666666" y="775" width="104" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="72" id="Tda-oh-Pfc"/>
+                                    <constraint firstAttribute="width" constant="104" id="Mhz-fi-Ui2"/>
+                                    <constraint firstAttribute="height" constant="32" id="ddi-Gs-lYh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" cyan="0.52160961289999996" magenta="0.075962092600000003" yellow="0.37044395390000001" black="0.45409910469999998" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="WMA-YF-Dgs" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="2HI-k9-ahp"/>
-                            <constraint firstItem="e6q-fM-NFc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Jst-dF-unF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="e6q-fM-NFc" secondAttribute="bottom" constant="15" id="XsN-Df-331"/>
-                            <constraint firstItem="WMA-YF-Dgs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="dKr-F8-MBL"/>
+                            <constraint firstItem="WMA-YF-Dgs" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="9a8-sd-2XB"/>
+                            <constraint firstItem="WMA-YF-Dgs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="CGH-tj-vsV"/>
+                            <constraint firstItem="e6q-fM-NFc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="gDs-TZ-Ff5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="e6q-fM-NFc" secondAttribute="bottom" constant="11" id="jG4-zZ-zrH"/>
+                            <constraint firstAttribute="height" secondItem="WMA-YF-Dgs" secondAttribute="height" multiplier="6.65625" id="nVg-mP-q3q"/>
+                            <constraint firstAttribute="width" secondItem="WMA-YF-Dgs" secondAttribute="width" multiplier="3.07031" id="zIF-94-yEu"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -49,7 +48,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MyPlayer Icon.png" width="128" height="128"/>
+        <image name="MyPlayerIcon" width="800" height="800"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
